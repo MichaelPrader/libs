@@ -1,37 +1,0 @@
-9
-
-dir
-285
-svn://www.mrbus.org/mrbus/trunk/libs
-svn://www.mrbus.org/mrbus
-
-
-
-2012-04-15T22:34:03.492110Z
-239
-maverick
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-daa3634f-3c4c-47b0-a1c5-eee6da88a1b6
-
-avr-ringbuffer
-dir
-
-pic-eeprom
-dir
-
-avr-i2c
-dir
-
