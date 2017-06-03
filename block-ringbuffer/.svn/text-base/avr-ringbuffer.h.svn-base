@@ -1,0 +1,42 @@
+#ifndef _AVR_RINGBUFFER_H_
+#define _AVR_RINGBUFFER_H_
+
+#ifndef RING_BUFFER_SZ
+#define RING_BUFFER_SZ  128
+#endif
+
+typedef struct
+{
+	volatile uint8_t headIdx;
+	volatile uint8_t tailIdx;	
+	volatile uint8_t bufferData[RING_BUFFER_SZ];
+} RingBuffer;
+
+
+void ringBufferInitialize(RingBuffer* r)
+{
+	r->headIdx = r->tailIdx = 0;
+}
+
+
+uint8_t ringBufferDepth(RingBuffer* r)
+{
+	return((r->headIdx - r->tailIdx ) % RING_BUFFER_SZ);
+}
+
+void ringBufferPush(RingBuffer* r, uint8_t data)
+{
+	r->bufferData[r->headIdx++] = data;
+	if( r->headIdx >= RING_BUFFER_SZ )
+		r->headIdx = 0;
+}
+
+uint8_t ringBufferPop(RingBuffer* r)
+{
+	uint8_t data = r->bufferData[r->tailIdx++];
+	if( r->tailIdx >= RING_BUFFER_SZ )
+		r->tailIdx = 0;
+	return(data);
+}
+
+#endif
